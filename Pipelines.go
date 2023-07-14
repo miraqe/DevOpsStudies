@@ -20,6 +20,9 @@ func getDeals() {
 		fmt.Println(err)
 		return
 	}
+
+}
+
 func main() {
 	getDeals()
-	}
+}
