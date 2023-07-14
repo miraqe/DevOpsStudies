@@ -21,5 +21,5 @@ func getDeals() {
 		return
 	}
 func main() {
-
+	getDeals()
 	}
