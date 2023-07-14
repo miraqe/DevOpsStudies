@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -20,6 +21,17 @@ func getDeals() {
 		fmt.Println(err)
 		return
 	}
-func main() {
+	defer func() {
+		err := res.Body.Close()
+		if err != nil {
+			fmt.Println("Error closing response body:", err)
+		}
+	}()
 
-	}
+	body, _ := io.ReadAll(res.Body)
+	println("Connection Successful! Showing all deals: ", string(body))
+}
+
+func main() {
+	getDeals()
+}
