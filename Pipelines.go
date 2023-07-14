@@ -20,6 +20,7 @@ func getDeals() {
 
 	// Create HTTP client
 	client := &http.Client{}
+
 	// Create a new GET request to the endpoint URL
 	req, err := http.NewRequest(method, endpointURL.String(), nil)
 	if err != nil {
@@ -50,46 +51,63 @@ func getDeals() {
 	println("Connection Successful! Showing all deals: ", string(body))
 }
 
-// Send POST request to Pipedrive API - Add a new deal
 func addDeal() {
-	Url, err := url.Parse("https://api.pipedrive.com/api/v1/deals?api_token=a9bfb11e27d8e6f01b7d0e8d88a53cda91c454ac")
+	// Set URL to connect to Pipedrive API with API token and parse the URL to format it properly
+	endpointUrl := "https://api.pipedrive.com/api/v1/deals?api_token=a9bfb11e27d8e6f01b7d0e8d88a53cda91c454ac"
 	method := "POST"
 
+	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-		"title":    "Test 13",
-		"value":    13000,
-		"currency": "EUR",
+
+		"value":              1875,
+		"currency":           "EUR",
+		"status":             "open",
+		"org_id":             4,
+		"participants_count": 1,
 	}
 
-	payloadBytes, err := json.Marshal(payloadData)
-	if err != nil {
-		fmt.Println(err)
+	// Check if the title exists and is not empty
+	title, titleExists := payloadData["title"]
+	if !titleExists || title == "" {
+		fmt.Println("Deal title is mandatory! You have not passed one. Try again by adding title name!")
 		return
 	}
 
+	// Convert the payload data to JSON format
+	payloadBytes, _ := json.Marshal(payloadData)
+
+	// Create HTTP client
 	client := &http.Client{}
-	req, err := http.NewRequest(method, Url.String(), bytes.NewBuffer(payloadBytes))
+
+	// Create a new POST request to the endpoint URL with the payload
+	req, err := http.NewRequest(method, endpointUrl, bytes.NewBuffer(payloadBytes))
 	if err != nil {
-		fmt.Println(err)
-		return
+		fmt.Println("Error creating a new GET request to the endpoint URL!")
 	}
+	// Set the content type to JSON
 	req.Header.Set("Content-Type", "application/json")
 
+	// Send the request and get a response
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error making request:", err)
 		return
 	}
-	defer res.Body.Close()
-
+	// Ensure the response body is closed after reading
+	defer func() {
+		err := res.Body.Close()
+		if err != nil {
+			fmt.Println("Error closing response body:", err)
+		}
+	}()
+	// Read the response body
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		return
+		fmt.Println("Error closing the response body: ", err)
 	}
 
-	fmt.Println("Response Body:", string(body))
-
+	// Print the deal added
+	println("Connection Successful! Deal added: ", string(body))
 }
 
 func main() {
