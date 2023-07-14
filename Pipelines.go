@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 )
@@ -48,6 +49,23 @@ func getDeals() {
 	println("Connection Successful! Showing all deals: ", string(body))
 }
 
+func addDeal() {
+	endpointUrl := "https://api.pipedrive.com/api/v1/deals?api_token=a9bfb11e27d8e6f01b7d0e8d88a53cda91c454ac"
+	method := "POST"
+
+	newDeal := Deal{
+		"title": "Fictulicious",
+	}
+
+	addedDeal, err := newDeal
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(addedDeal))
+}
+
 func main() {
 	getDeals()
+	addDeal()
 }
