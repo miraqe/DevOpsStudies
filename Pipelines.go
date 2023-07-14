@@ -1,9 +1,10 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 )
@@ -49,20 +50,46 @@ func getDeals() {
 	println("Connection Successful! Showing all deals: ", string(body))
 }
 
+// Send POST request to Pipedrive API - Add a new deal
 func addDeal() {
-	endpointUrl := "https://api.pipedrive.com/api/v1/deals?api_token=a9bfb11e27d8e6f01b7d0e8d88a53cda91c454ac"
+	Url, err := url.Parse("https://api.pipedrive.com/api/v1/deals?api_token=a9bfb11e27d8e6f01b7d0e8d88a53cda91c454ac")
 	method := "POST"
 
-	newDeal := Deal{
-		"title": "Fictulicious",
+	payloadData := map[string]interface{}{
+		"title":    "Test 13",
+		"value":    13000,
+		"currency": "EUR",
 	}
 
-	addedDeal, err := newDeal
+	payloadBytes, err := json.Marshal(payloadData)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
+		return
 	}
 
-	fmt.Println(string(addedDeal))
+	client := &http.Client{}
+	req, err := http.NewRequest(method, Url.String(), bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("Response Body:", string(body))
+
 }
 
 func main() {
