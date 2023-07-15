@@ -58,8 +58,8 @@ func addDeal() {
 
 	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-
-		"value":              1875,
+		"title":              "Ingretchen",
+		"value":              7209,
 		"currency":           "EUR",
 		"status":             "open",
 		"org_id":             4,
@@ -160,7 +160,7 @@ func updateDeal() {
 	if err != nil {
 		fmt.Println("Error closing the response body: ", err)
 	}
-	// Print the deal added
+	// Print changed deal
 	println("Connection successful! Deal has been changed: ", string(body))
 }
 
