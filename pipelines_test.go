@@ -3,11 +3,19 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"strings"
 	"testing"
 )
 
 func TestForwardGetRequest(t *testing.T) {
+	config, err := loadConfig()
+	if err != nil {
+		t.Fatalf("Error loading config: %s", err)
+	}
+
+	// Set the API token as an environment variable
+	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
 	// Create a mock-up http.ResponseWriter
 	w := httptest.NewRecorder()
 
