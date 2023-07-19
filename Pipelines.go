@@ -124,7 +124,7 @@ func forwardAddDeal(w http.ResponseWriter, r *http.Request, payloadData map[stri
 	// Read the response body from Pipedrive API
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("Error reading response body from Pipedrive API: ", err)
+		log.Println("Error reading response from Pipedrive API: ", err)
 		http.Error(w, "Internal Server Error ", http.StatusInternalServerError)
 		return
 
@@ -137,9 +137,72 @@ func forwardAddDeal(w http.ResponseWriter, r *http.Request, payloadData map[stri
 	w.Write(body)
 }
 
+func changeDealHandler(w http.ResponseWriter, r *http.Request) {
+	var payloadData map[string]interface{}
+
+	// Read the request body to get the payload data
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		log.Println("Error reading the request body: ", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	err = json.Unmarshal(body, &payloadData)
+	if err != nil {
+		log.Println("Error unmarshaling request body: ", err)
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+	forwardChangeDeal(w, r, payloadData)
+}
+
+func forwardChangeDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]interface{}) {
+	var pipedriveAPIToken = os.Getenv("PIPEDRIVE_API_TOKEN")
+	pipedriveURL := "https://api.pipedrive.com/v1/deals/35?api_token=" + pipedriveAPIToken
+
+	payloadBytes, err := json.Marshal(payloadData)
+	if err != nil {
+		log.Println("Error marshaling Payload Data: ", err)
+		http.Error(w, "Internal Server Error: ", http.StatusInternalServerError)
+		return
+	}
+
+	req, err := http.NewRequest(http.MethodPut, pipedriveURL, bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		log.Println("Error creating a new request to Pipedrive API: ", err)
+		http.Error(w, "Internal Server Error: ", http.StatusInternalServerError)
+		return
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println("Error reading a response from Pipedrive API: ", err)
+		http.Error(w, "Internal Server Error: ", http.StatusInternalServerError)
+		return
+	}
+	// Read the response body from Pipedrive API
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println("Error reading response from Pipedrive API: ", err)
+		http.Error(w, "Internal Server Error ", http.StatusInternalServerError)
+		return
+	}
+	println("Connection Successful! Deal added: ", string(body))
+
+	// Make sure response is in JSON and write the response to the client
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(body)
+}
+
 func main() {
 	http.HandleFunc("/myendpoint", forwardGetRequest)
 	http.HandleFunc("/addDeal", addDealHandler)
+	http.HandleFunc("/changeDeal", changeDealHandler)
 
 	log.Println("Server started on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
