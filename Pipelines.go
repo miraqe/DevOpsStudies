@@ -3,10 +3,14 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"time"
 )
 
 type Config struct {
@@ -26,9 +30,42 @@ func loadConfig() (Config, error) {
 	return config, err
 }
 
-func forwardGetRequest(w http.ResponseWriter, r *http.Request) {
+var (
+	// Count events or occurrences
+	httpTotalRequests = prometheus.NewCounterVec(
+		// Provide configuration options (name, description)
+		prometheus.CounterOpts{
+			Name: "http_requests_total:",
+			Help: "TOTAL NUMBER OF HTTP REQUESTS: ",
+		},
+		[]string{"method", "endpoint", "status"},
+	)
+	// Observe observations over time
+	httpDuration = prometheus.NewHistogramVec(
+		// Provide configuration options (name, description)
+		prometheus.HistogramOpts{
+			Name: "http_duration_seconds",
+			Help: "Histogram of HTTP request duration in seconds: ",
+		},
+		[]string{"method", "endpoint", "status"},
+	)
+)
+
+func init() {
+	//Register metrics with Prometheus
+
+	prometheus.MustRegister(httpTotalRequests)
+	prometheus.MustRegister(httpDuration)
+}
+
+func getMetricsHandler(w http.ResponseWriter, r *http.Request) {
+	promhttp.Handler().ServeHTTP(w, r)
+}
+func forwardGetDeals(w http.ResponseWriter, r *http.Request) {
 	var pipedriveAPIToken = os.Getenv("PIPEDRIVE_API_TOKEN")
 	pipedriveURL := "https://api.pipedrive.com/v1/deals?api_token=" + pipedriveAPIToken
+
+	startTime := time.Now()
 
 	// Create a new GET request to the Pipedrive API
 	req, err := http.NewRequest(http.MethodGet, pipedriveURL, nil)
@@ -63,6 +100,13 @@ func forwardGetRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(resp.StatusCode)
 	w.Write(body)
+
+	// Increment the counter for each request to this endpoint
+	httpTotalRequests.WithLabelValues(http.MethodGet, "/getDeals", strconv.Itoa(resp.StatusCode)).Inc()
+
+	// Record the duration of the request using the histogram
+	httpDuration.WithLabelValues(http.MethodGet, "/getDeals", strconv.Itoa(resp.StatusCode)).Observe(time.Since(startTime).Seconds())
+
 }
 
 func addDealHandler(w http.ResponseWriter, r *http.Request) {
@@ -158,7 +202,7 @@ func changeDealHandler(w http.ResponseWriter, r *http.Request) {
 
 func forwardChangeDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]interface{}) {
 	var pipedriveAPIToken = os.Getenv("PIPEDRIVE_API_TOKEN")
-	pipedriveURL := "https://api.pipedrive.com/v1/deals/35?api_token=" + pipedriveAPIToken
+	pipedriveURL := "https://api.pipedrive.com/v1/deals/47?api_token=" + pipedriveAPIToken
 
 	payloadBytes, err := json.Marshal(payloadData)
 	if err != nil {
@@ -190,7 +234,7 @@ func forwardChangeDeal(w http.ResponseWriter, r *http.Request, payloadData map[s
 		http.Error(w, "Internal Server Error ", http.StatusInternalServerError)
 		return
 	}
-	println("Connection Successful! Deal added: ", string(body))
+	println("Connection Successful! Deal changed: ", string(body))
 
 	// Make sure response is in JSON and write the response to the client
 
@@ -200,9 +244,10 @@ func forwardChangeDeal(w http.ResponseWriter, r *http.Request, payloadData map[s
 }
 
 func main() {
-	http.HandleFunc("/myendpoint", forwardGetRequest)
+	http.HandleFunc("/getDeals", forwardGetDeals)
 	http.HandleFunc("/addDeal", addDealHandler)
 	http.HandleFunc("/changeDeal", changeDealHandler)
+	http.HandleFunc("/getMetrics", getMetricsHandler)
 
 	log.Println("Server started on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
