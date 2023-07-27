@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-and-lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout code
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 22.04
+          go-version: 20.04
 
       # Install a stable Go version
       - name: Set up Go
