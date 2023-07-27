@@ -11,8 +11,7 @@ import (
 	"testing"
 )
 
-func TestGetDealsHandler(t *testing.T) {
-	// Load the config before running the test
+func setAPIToken(t *testing.T) {
 	config, err := loadConfig()
 	if err != nil {
 		t.Fatalf("Error loading config: %s", err)
@@ -20,6 +19,10 @@ func TestGetDealsHandler(t *testing.T) {
 
 	// Set the API token as an environment variable
 	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
+}
+
+func TestGetDealsHandler(t *testing.T) {
+	setAPIToken(t)
 
 	// Create a mock-up http.ResponseWriter
 	w := httptest.NewRecorder()
@@ -43,19 +46,12 @@ func TestGetDealsHandler(t *testing.T) {
 }
 
 func TestAddDealHandler(t *testing.T) {
-	// Load the config before running the test
-	config, err := loadConfig()
-	if err != nil {
-		t.Fatalf("Error loading config: %s", err)
-	}
-
-	// Set the API token as an environment variable
-	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
+	setAPIToken(t)
 
 	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-		"title":              "Craddle Merch",
-		"value":              576,
+		"title":              "CraddleMerch",
+		"value":              267,
 		"currency":           "EUR",
 		"status":             "open",
 		"org_id":             1,
@@ -84,19 +80,12 @@ func TestAddDealHandler(t *testing.T) {
 }
 
 func TestChangeDealHandler(t *testing.T) {
-	// Load the config before running the test
-	config, err := loadConfig()
-	if err != nil {
-		t.Fatalf("Error loading config: %s", err)
-	}
-
-	// Set the API token as an environment variable
-	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
+	setAPIToken(t)
 
 	// Prepare the payload data for changing deal 44
 	payloadData := map[string]interface{}{
-		"title": "Spruce Bravo",
-		"value": 2634,
+		"title": "FinniganTech",
+		"value": 6500,
 	}
 
 	// Convert the payload data to JSON format
