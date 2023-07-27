@@ -21,8 +21,8 @@ jobs:
         run: go mod download 
 
       # Install golangci-lint using Go
-      - name: Install golangci-lint
-        run: go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
+      - name: Lint Code Base
+        uses: github/super-linter@v4
 
       # Run tests
       - name: Run Tests
@@ -30,4 +30,4 @@ jobs:
 
       # Run linting with golangci-lint
       - name: Run Linting
-        run: golangci-lint run
+        run: go test ./...
