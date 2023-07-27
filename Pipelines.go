@@ -27,7 +27,7 @@ func collectMetrics() {
 	}()
 }
 
-// Create Prometheus custom metrics to collect and expose for monitoring.
+// Create Prometheus custom metrics to collect and expose for monitoring requests and latency.
 var (
 	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
 		Name: "httpTotalRequests",
