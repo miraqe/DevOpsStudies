@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with: 
-          go-version: ${{ matrix.go-version }}
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
@@ -26,6 +24,10 @@ jobs:
       - name: Run Tests
         run: go test ./...
 
-      # Run linting with golint
+      # Install golangci-lint using curl
+      - name: Install golangci-lint
+        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.42.1
+
+      # Run linting with golangci-lint
       - name: Run Linting
-        run: golint ./...
+        run: golangci-lint run
