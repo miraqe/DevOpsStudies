@@ -20,14 +20,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 20.04
-
-      # Install a stable Go version
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
           go-version: stable
-
 
       # Install golint
       - name: Install golint
@@ -36,7 +29,7 @@ jobs:
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
-        run: go mod download 
+        run: go mod download
 
       # Run tests
       - name: Run Tests
@@ -45,3 +38,4 @@ jobs:
       # Run linting
       - name: Run Linting
         run: golint ./...
+
