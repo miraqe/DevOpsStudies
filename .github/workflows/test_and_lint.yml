@@ -16,17 +16,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Install any dependencies needed for testing and linting
-      - name: Install Dependencies
+      # Install the latest stable Go version
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: stable
+
+      # Install golint
+      - name: Install golint
         run: |
-          go mod download 
+          go get -u golang.org/x/lint/golint
+
+      # Install any dependencies needed for testing
+      - name: Install Dependencies
+        run: go mod download 
 
       # Run tests
       - name: Run Tests
-        run: |
-          go test ./...
+        run: go test ./...
 
-      # Run linting (assuming you have a linter configured for your project)
+      # Run linting
       - name: Run Linting
-        run: |
-          golangci-lint run
+        run: golint ./...
