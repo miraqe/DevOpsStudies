@@ -28,7 +28,7 @@ jobs:
 
       # Add the Super Linter action
       - name: Super Linter
-        uses: github/super-linter@v3
+        uses: super-linter/super-linter@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           commit: ${{ github.sha }}
