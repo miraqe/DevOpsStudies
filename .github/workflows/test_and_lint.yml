@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-and-lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-23.04
 
     steps:
       - name: Checkout code
