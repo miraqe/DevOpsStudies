@@ -1,4 +1,4 @@
-name: Test and lint
+name: Test and Lint
 
 on:
   push:
@@ -10,32 +10,30 @@ on:
 
 jobs:
   test-and-lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       # Install a stable Go version
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v2
         with:
-          go-version: stable
+          go-version: '1.17' # Change this to the desired Go version
 
-      # Install golint
-      - name: Install golint
-        run: |
-          go get -u golang.org/x/lint/golint
+      # Install golangci-lint
+      - name: Install golangci-lint
+        run: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.42.1
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
-        run: go mod download
+        run: go mod download 
 
       # Run tests
       - name: Run Tests
         run: go test ./...
 
-      # Run linting
+      # Run linting with golangci-lint
       - name: Run Linting
         run: golangci-lint run
-
