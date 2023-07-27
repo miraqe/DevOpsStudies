@@ -19,7 +19,8 @@ jobs:
       # Install any dependencies needed for testing and linting
       - name: Install Dependencies
         run: |
-          go mod download 
+          go version
+          go get -u golang.org/x/lint/golint
 
       # Run tests
       - name: Run Tests
@@ -29,4 +30,4 @@ jobs:
       # Run linting (assuming you have a linter configured for your project)
       - name: Run Linting
         run: |
-          golangci-lint run
+          golint
