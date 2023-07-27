@@ -1,0 +1,41 @@
+name: Test and Lint
+
+on:
+  push:
+    branches:
+      - testing_environment
+  pull_request:
+    branches:
+      - testing_environment
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Install stable Go version
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
+
+      # Install any dependencies needed for testing
+      - name: Install Dependencies
+        run: go mod download 
+
+      # Run tests
+      - name: Run Tests
+        run: go test ./...
+
+      # Remove the existing linting step using golint
+
+      # Run the Super Linter
+      - name: Lint Code Base
+        uses: super-linter/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
