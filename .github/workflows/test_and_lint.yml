@@ -22,10 +22,6 @@ jobs:
         with:
           go-version: '1.17' # Change this to the desired Go version
 
-      # Install golangci-lint
-      - name: Install golangci-lint
-        run: curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(go env GOPATH)/bin v1.42.1
-
       # Install any dependencies needed for testing
       - name: Install Dependencies
         run: go mod download 
@@ -34,6 +30,6 @@ jobs:
       - name: Run Tests
         run: go test ./...
 
-      # Run linting with golangci-lint
+      # Run linting with golint
       - name: Run Linting
-        run: golangci-lint run
+        run: golint ./...
