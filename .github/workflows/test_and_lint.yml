@@ -26,7 +26,7 @@ jobs:
       - name: Install Dependencies
         run: go mod download 
 
-      # Add the Super Linter action
+      # Add Super Linter action
       - name: Super Linter
         uses: github/super-linter@v3
         with:
