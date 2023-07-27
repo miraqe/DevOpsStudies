@@ -1,3 +1,4 @@
+
 name: Test and Lint
 
 on:
@@ -16,10 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set API Token as an environment variable
-      - name: Set API Token
-        run: echo "PIPEDRIVE_API_TOKEN=${{ secrets.PIPEDRIVE_API_TOKEN }}" >> $GITHUB_ENV
-
       # Install stable Go version
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -28,11 +25,7 @@ jobs:
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
-        run: go mod download
-
-      - name: Set API Token
-        run: echo "PIPEDRIVE_API_TOKEN=${{ secrets.PIPEDRIVE_API_TOKEN }}" >> $GITHUB_ENV
-
+        run: go mod download 
 
       # Run tests
       - name: Run Tests
