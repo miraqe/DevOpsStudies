@@ -26,18 +26,14 @@ jobs:
       - name: Install Dependencies
         run: go mod download 
 
-      # Install golint
-      - name: Install golint
-        run: go get -u golang.org/x/lint/golint
-
-      # Run tests
-      - name: Run Tests
-        run: go test ./...
-
-      # Run Super Linter
-      - name: Run Super Linter
+      # Add the Super Linter action
+      - name: Super Linter
         uses: github/super-linter@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           commit: ${{ github.sha }}
           validate-yaml: false
+
+      # Run tests
+      - name: Run Tests
+        run: go test ./...
