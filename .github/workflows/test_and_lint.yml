@@ -34,6 +34,10 @@ jobs:
       - name: Run Tests
         run: go test ./...
 
-      # Run linting with golint
-      - name: Run Linting
-        run: golint ./...
+      # Run Super Linter
+      - name: Run Super Linter
+        uses: github/super-linter@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit: ${{ github.sha }}
+          validate-yaml: false
