@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Install a stable Go version
+      # Install stable Go version
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
