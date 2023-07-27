@@ -1,4 +1,4 @@
-name: Test and lint
+name: Test and Lint
 
 on:
   push:
@@ -10,31 +10,30 @@ on:
 
 jobs:
   test-and-lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # Install the latest stable Go version
+      # Install a stable Go version
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v2
         with:
-          go-version: stable
-
-      # Install golint
-      - name: Install golint
-        run: |
-          go get -u golang.org/x/lint/golint
+          go-version: '1.17'
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
         run: go mod download 
 
+      # Install golint
+      - name: Install golint
+        run: go get -u golang.org/x/lint/golint
+
       # Run tests
       - name: Run Tests
         run: go test ./...
 
-      # Run linting
+      # Run linting with golint
       - name: Run Linting
         run: golint ./...
