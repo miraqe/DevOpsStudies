@@ -47,7 +47,7 @@ type Config struct {
 	PipedriveAPIToken string `json:"pipedrive_api_token"`
 }
 
-// Add a function loadConfig, which loads the configuration from the "config.json" file.
+// Add a function loadConfig, which loads the configuration key from the "config.json" file.
 func loadConfig() (Config, error) {
 	var config Config
 	file, err := os.Open("config.json")
