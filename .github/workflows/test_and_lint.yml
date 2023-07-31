@@ -28,7 +28,7 @@ jobs:
 
       # Set the GitHub secret as an environment variable for the tests
       - name: Set Test Environment Variable
-        run: echo "PIPEDRIVE_API_TOKEN_GITHUB=${{ secrets.PIPEDRIVE_API_TOKEN }}" >> $GITHUB_ENV
+        run: echo "PIPEDRIVE_API_TOKEN=${{ secrets.PIPEDRIVE_API_TOKEN }}" >> $GITHUB_ENV
 
       # Run tests
       - name: Run Tests
