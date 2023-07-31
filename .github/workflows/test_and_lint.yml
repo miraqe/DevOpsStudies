@@ -24,7 +24,7 @@ jobs:
 
       # Install any dependencies needed for testing
       - name: Install Dependencies
-        run: go mod download 
+        run: go mod download
 
       # Run tests
       - name: Run Tests
@@ -36,4 +36,4 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          PIPEDRIVE API TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}

@@ -14,8 +14,7 @@ import (
 	"time"
 )
 
-// collectMetrics periodically increments a counter and records a summary
-// to collect metrics for monitoring and observability purposes.
+// Collect metrics for monitoring and observability purposes.
 func collectMetrics() {
 	go func() {
 		for {
@@ -28,7 +27,7 @@ func collectMetrics() {
 	}()
 }
 
-// Define Prometheus metrics to collect and expose for monitoring.
+// Create Prometheus custom metrics to collect and expose for monitoring.
 var (
 	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
 		Name: "httpTotalRequests",
@@ -43,12 +42,13 @@ var (
 	})
 )
 
-// Config represents the configuration loaded from a JSON file.
+// Add a function Config, which represents configuration from a JSON file.
+
 type Config struct {
-	PipedriveAPIToken string `json:"pipedrive_api_token"`
+	PipedriveAPIToken string `json:"PipedriveAPIToken"`
 }
 
-// loadConfig loads the configuration from the "config.json" file.
+// Add a function loadConfig, which loads the configuration key from the "config.json" file.
 func loadConfig() (Config, error) {
 	var config Config
 	file, err := os.Open("config.json")
@@ -117,7 +117,7 @@ func addDealHandler(w http.ResponseWriter, r *http.Request) {
 	// Unmarshal the request body into the payloadData map
 	err = json.Unmarshal(body, &payloadData)
 	if err != nil {
-		log.Println("Error unmarshaling request body:", err)
+		log.Println("Error un-marshaling request body:", err)
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
@@ -188,7 +188,7 @@ func changeDealHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	err = json.Unmarshal(body, &payloadData)
 	if err != nil {
-		log.Println("Error unmarshaling request body: ", err)
+		log.Println("Error un-marshaling request body: ", err)
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
