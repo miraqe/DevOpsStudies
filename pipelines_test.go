@@ -22,7 +22,7 @@ func setAPIToken(t *testing.T) {
 	// If the test-specific token is not set, use the token from the config.json file
 	config, err := loadConfig()
 	if err != nil {
-		t.Fatalf("Error loading config: %s", err)
+		t.Fatalf("Error loading JSON configuration file: %s", err)
 	}
 
 	// Set the API token as an environment variable
