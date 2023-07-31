@@ -1,0 +1,14 @@
+name: Deploy On Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log Deployment Message
+        run: echo "Deployed!"
