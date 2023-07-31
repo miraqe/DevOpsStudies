@@ -3,10 +3,17 @@ name: Test and Lint
 on:
   push:
     branches:
+<<<<<<< HEAD
       - testing_environment
   pull_request:
     branches:
       - testing_environment
+=======
+      - workflows
+  pull_request:
+    branches:
+      - workflows
+>>>>>>> main
 
 jobs:
   test-and-lint:
@@ -16,6 +23,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+<<<<<<< HEAD
       # Install stable Go version
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -37,3 +45,19 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+=======
+      # Install any dependencies needed for testing and linting
+      - name: Install Dependencies
+        run: |
+          go mod download 
+
+      # Run tests
+      - name: Run Tests
+        run: |
+          go test ./...
+
+      # Run linting (assuming you have a linter configured for your project)
+      - name: Run Linting
+        run: |
+          golangci-lint run
+>>>>>>> main
