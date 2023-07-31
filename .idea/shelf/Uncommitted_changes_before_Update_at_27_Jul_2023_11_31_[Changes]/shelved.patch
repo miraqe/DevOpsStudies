@@ -1,0 +1,203 @@
+Index: pipelines_test.go
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package main\r\n\r\nimport (\r\n\t\"bytes\"\r\n\t\"encoding/json\"\r\n\t\"net/http\"\r\n\t\"net/http/httptest\"\r\n\t\"os\"\r\n\t\"strings\"\r\n\t\"testing\"\r\n)\r\n\r\nfunc apiToken(t *testing.T) {\r\n\tconfig, err := loadConfig()\r\n\tif err != nil {\r\n\t\tt.Fatalf(\"Error loading config: %s\", err)\r\n\t}\r\n\r\n\t// Set the API token as an environment variable\r\n\tos.Setenv(\"PIPEDRIVE_API_TOKEN\", config.PipedriveAPIToken)\r\n}\r\nfunc TestForwardGetRequest(t *testing.T) {\r\n\tapiToken(t)\r\n\r\n\t// Create a mock-up http.ResponseWriter\r\n\tw := httptest.NewRecorder()\r\n\r\n\t// Create a mock-up http.Request for the GET request\r\n\tr := httptest.NewRequest(http.MethodGet, \"/myendpoint\", nil)\r\n\r\n\t// Call forwardGetRequest with the mock-up request and response\r\n\tforwardGetRequest(w, r)\r\n\r\n\t// Check the response status code\r\n\tif w.Code != http.StatusOK {\r\n\t\tt.Errorf(\"Expected status code %d, but got %d\", http.StatusOK, w.Code)\r\n\t}\r\n\r\n\t// Check if the response body contains the \"title\" field\r\n\texpectedTitle := \"Ingretchen\"\r\n\tif !strings.Contains(w.Body.String(), expectedTitle) {\r\n\t\tt.Errorf(\"Expected title '%s' not found in the response\", expectedTitle)\r\n\t}\r\n}\r\n\r\nfunc TestForwardAddDeal(t *testing.T) {\r\n\tapiToken(t)\r\n\r\n\t// Prepare the payload data for the new deal\r\n\tpayloadData := map[string]interface{}{\r\n\t\t\"title\":              \"LongerDivine\",\r\n\t\t\"value\":              2775,\r\n\t\t\"currency\":           \"EUR\",\r\n\t\t\"status\":             \"open\",\r\n\t\t\"org_id\":             2,\r\n\t\t\"participants_count\": 1,\r\n\t}\r\n\r\n\t// Convert the payload data to JSON format\r\n\tpayloadBytes, err := json.Marshal(payloadData)\r\n\tif err != nil {\r\n\t\tt.Fatalf(\"Error converting payload to JSON: %s\", err)\r\n\t}\r\n\r\n\t// Create a new POST request with the payload\r\n\tw := httptest.NewRecorder()\r\n\tr := httptest.NewRequest(http.MethodPost, \"/addDeal\", bytes.NewBuffer(payloadBytes))\r\n\tr.Header.Set(\"Content-Type\", \"application/json\")\r\n\r\n\t// Call forwardAddDeal with the mock-up request, response, and payload data\r\n\tforwardAddDeal(w, r, payloadData)\r\n\r\n\t// Check the response status code\r\n\tif w.Code != http.StatusCreated {\r\n\t\tt.Errorf(\"Expected status code %d, but got %d\", http.StatusCreated, w.Code)\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pipelines_test.go b/pipelines_test.go
+--- a/pipelines_test.go	(revision 3d7e8fd27e52d84b58b050222b44cd143cee354a)
++++ b/pipelines_test.go	(date 1690369320339)
+@@ -3,6 +3,7 @@
+ import (
+ 	"bytes"
+ 	"encoding/json"
++	"log"
+ 	"net/http"
+ 	"net/http/httptest"
+ 	"os"
+@@ -26,10 +27,10 @@
+ 	w := httptest.NewRecorder()
+ 
+ 	// Create a mock-up http.Request for the GET request
+-	r := httptest.NewRequest(http.MethodGet, "/myendpoint", nil)
++	r := httptest.NewRequest(http.MethodGet, "/getDeals", nil)
+ 
+ 	// Call forwardGetRequest with the mock-up request and response
+-	forwardGetRequest(w, r)
++	forwardGetDeals(w, r)
+ 
+ 	// Check the response status code
+ 	if w.Code != http.StatusOK {
+@@ -48,11 +49,11 @@
+ 
+ 	// Prepare the payload data for the new deal
+ 	payloadData := map[string]interface{}{
+-		"title":              "LongerDivine",
+-		"value":              2775,
++		"title":              "Mellon",
++		"value":              267,
+ 		"currency":           "EUR",
+ 		"status":             "open",
+-		"org_id":             2,
++		"org_id":             1,
+ 		"participants_count": 1,
+ 	}
+ 
+@@ -71,7 +72,39 @@
+ 	forwardAddDeal(w, r, payloadData)
+ 
+ 	// Check the response status code
++	log.Println()
+ 	if w.Code != http.StatusCreated {
+ 		t.Errorf("Expected status code %d, but got %d", http.StatusCreated, w.Code)
+ 	}
+ }
++
++/*
++func TestForwardChangeDeal(t *testing.T) {
++	apiToken(t)
++
++	// Prepare the payload data for changing deal 44
++	payloadData := map[string]interface{}{
++		"title": "FinniganTech",
++		"value": 6500,
++	}
++
++	// Convert the payload data to JSON format
++	payloadBytes, err := json.Marshal(payloadData)
++	if err != nil {
++		t.Fatalf("Error converting payload to JSON: %s", err)
++	}
++
++	// Create a new PUT request with the payload to change deal 44
++	w := httptest.NewRecorder()
++	r := httptest.NewRequest(http.MethodPut, "/changeDeal", bytes.NewBuffer(payloadBytes))
++	r.Header.Set("Content-Type", "application/json")
++
++	// Call forwardChangeDeal with the mock-up request, response, and payload data
++	forwardChangeDeal(w, r, payloadData)
++
++	// Check the response status code
++	log.Println()
++	if w.Code != http.StatusOK {
++		t.Errorf("Expected status code %d, but got %d", http.StatusOK, w.Code)
++	}
++}*/
+Index: main.go
+===================================================================
+diff --git a/main.go b/main.go
+deleted file mode 100644
+--- a/main.go	(revision 3d7e8fd27e52d84b58b050222b44cd143cee354a)
++++ /dev/null	(revision 3d7e8fd27e52d84b58b050222b44cd143cee354a)
+@@ -1,7 +0,0 @@
+-package main
+-
+-import "fmt"
+-
+-func main() {
+-	fmt.Println("Hello, World!")
+-}
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Default ignored files\r\n/shelf/\r\n/workspace.xml\r\n# Editor-based HTTP Client requests\r\n/httpRequests/\r\n# Datasource local storage ignored files\r\n/dataSources/\r\n/dataSources.local.xml\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision 3d7e8fd27e52d84b58b050222b44cd143cee354a)
++++ b/.idea/.gitignore	(date 1689777680543)
+@@ -6,3 +6,5 @@
+ # Datasource local storage ignored files
+ /dataSources/
+ /dataSources.local.xml
++# .gitignore
++config.json
+Index: prometheus.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/prometheus.yml b/prometheus.yml
+new file mode 100644
+--- /dev/null	(date 1690372798563)
++++ b/prometheus.yml	(date 1690372798563)
+@@ -0,0 +1,4 @@
++scrape_configs:
++  - job_name: 'my_app'
++    static_configs:
++      - targets: ['localhost:8081']
+Index: go.mod
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module DealFlows\r\n\r\ngo 1.20\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/go.mod b/go.mod
+--- a/go.mod	(revision 3d7e8fd27e52d84b58b050222b44cd143cee354a)
++++ b/go.mod	(date 1690189546270)
+@@ -1,3 +1,15 @@
+ module DealFlows
+ 
+ go 1.20
++
++require (
++	github.com/beorn7/perks v1.0.1 // indirect
++	github.com/cespare/xxhash/v2 v2.2.0 // indirect
++	github.com/golang/protobuf v1.5.3 // indirect
++	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
++	github.com/prometheus/client_golang v1.16.0 // indirect
++	github.com/prometheus/client_model v0.4.0 // indirect
++	github.com/prometheus/common v0.44.0 // indirect
++	golang.org/x/sys v0.10.0 // indirect
++	google.golang.org/protobuf v1.31.0 // indirect
++)
+Index: go.sum
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/go.sum b/go.sum
+new file mode 100644
+--- /dev/null	(date 1690189546271)
++++ b/go.sum	(date 1690189546271)
+@@ -0,0 +1,36 @@
++github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
++github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
++github.com/cespare/xxhash/v2 v2.2.0 h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44=
++github.com/cespare/xxhash/v2 v2.2.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
++github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
++github.com/go-logfmt/logfmt v0.5.1/go.mod h1:WYhtIu8zTZfxdn5+rREduYbwxfcBr/Vr6KEVveWlfTs=
++github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
++github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
++github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
++github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
++github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
++github.com/jpillora/backoff v1.0.0/go.mod h1:J/6gKK9jxlEcS3zixgDgUAsiuZ7yrSoa/FX5e0EB2j4=
++github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
++github.com/julienschmidt/httprouter v1.3.0/go.mod h1:JR6WtHb+2LUe8TCKY3cZOxFyyO8IZAc4RVcycCCAKdM=
++github.com/matttproud/golang_protobuf_extensions v1.0.4 h1:mmDVorXM7PCGKw94cs5zkfA9PSy5pEvNWRP0ET0TIVo=
++github.com/matttproud/golang_protobuf_extensions v1.0.4/go.mod h1:BSXmuO+STAnVfrANrmjBb36TMTDstsz7MSK+HVaYKv4=
++github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
++github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
++github.com/mwitkow/go-conntrack v0.0.0-20190716064945-2f068394615f/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
++github.com/prometheus/client_golang v1.16.0 h1:yk/hx9hDbrGHovbci4BY+pRMfSuuat626eFsHb7tmT8=
++github.com/prometheus/client_golang v1.16.0/go.mod h1:Zsulrv/L9oM40tJ7T815tM89lFEugiJ9HzIqaAx4LKc=
++github.com/prometheus/client_model v0.4.0 h1:5lQXD3cAg1OXBf4Wq03gTrXHeaV0TQvGfUooCfx1yqY=
++github.com/prometheus/client_model v0.4.0/go.mod h1:oMQmHW1/JoDwqLtg57MGgP/Fb1CJEYF2imWWhWtMkYU=
++github.com/prometheus/common v0.44.0 h1:+5BrQJwiBB9xsMygAB3TNvpQKOwlkc25LbISbrdOOfY=
++github.com/prometheus/common v0.44.0/go.mod h1:ofAIvZbQ1e/nugmZGz4/qCb9Ap1VoSTIO7x0VV9VvuY=
++golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
++golang.org/x/sys v0.10.0 h1:SqMFp9UcQJZa+pmYuAKjd9xq1f0j5rLcDIk0mj4qAsA=
++golang.org/x/sys v0.10.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
++golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
++google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
++google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
++google.golang.org/protobuf v1.30.0 h1:kPPoIgf3TsEvrm0PFe15JQ+570QVxYzEvvHqChK+cng=
++google.golang.org/protobuf v1.30.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
++google.golang.org/protobuf v1.31.0 h1:g0LDEJHgrBl9N9r17Ru3sqWhkIx2NB67okBHPwC7hs8=
++google.golang.org/protobuf v1.31.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
++gopkg.in/yaml.v2 v2.4.0/go.mod h1:RDklbk79AGWmwhnvt/jBztapEOGDOx6ZbXqjP6csGnQ=

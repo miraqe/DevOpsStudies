@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Checking if key is working">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="workflows" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="52d090b2-1ec6-4e9f-a048-1e9ffe1c9543" />
+        <option name="url" value="https://github.com/miraqe/DevOpsStudies" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2SYuHftvhcwzbaVm9yZnYpNrFAR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/annam/IdeaProjects/PipeTest/Test.go",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows" />
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows\data" />
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows\.github\workflows" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestForwardGetRequest in DealFlows" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="DealFlows" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="DealFlows" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestForwardGetRequest\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestForwardGetRequest in DealFlows" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="" />
+      <created>1689335750894</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689335750894</updated>
+      <workItem from="1689335751961" duration="6502000" />
+      <workItem from="1689349013336" duration="13099000" />
+      <workItem from="1689579335339" duration="83329000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added error handlers to code and error messages">
+      <created>1689337268994</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689337268994</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added error handlers to code and error messages">
+      <created>1689337589290</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689337589290</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added error handlers to code and error messages">
+      <created>1689337729415</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689337729415</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added API/TOKEN/URL">
+      <created>1689338585675</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689338585675</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added API/TOKEN/URL">
+      <created>1689339077884</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689339077884</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added API/TOKEN/URL">
+      <created>1689339474594</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1689339474594</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added error messages and success message">
+      <created>1689339564029</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1689339564029</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added final error handling messages, cleaned up first part of the application, added comments to each part to explain what they mean">
+      <created>1689343703571</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689343703571</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added initial addDeal function together with API, Token, URL and title of the deal">
+      <created>1689349506022</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1689349506022</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Changed to add payloadData variable with map/strings/interface functionality as strings.NewReader was not working">
+      <created>1689351952508</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1689351952508</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Made the code more readable, added error handling and comments to each section">
+      <created>1689352632178</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1689352632178</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing">
+      <created>1689414760883</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1689414760883</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing">
+      <created>1689414977799</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1689414977799</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Merge remote-tracking branch 'origin/Ttesting_environment' into testing_environment">
+      <created>1689415040619</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1689415040619</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added my own endpoint to GET and tested it within pipelines_test file by trying to find a title which exists in Postman and Pipedrive CRM&#10;&#10;With that said, I also created pipelines_test file, to test code functionality and behavior, added simple testing for GET function">
+      <created>1689767798350</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1689767798350</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Made changes to the test and main file in order to hide the now changed API">
+      <created>1689777851638</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1689777851638</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added a POST function and also DealHandler which will be referred to in main function. Added POST testing functionality also to pipelines_test file to see whether new deal is accepted by the server">
+      <created>1689785660440</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1689785660440</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added PUT function with dealhandler, added mandatory functions to both AddDeal and GetRequest">
+      <created>1689788103321</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1689788103321</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added GET/metrics to gather information about requests and latency for GET/deals">
+      <created>1690367247404</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1690367247404</updated>
+    </task>
+    <task id="LOCAL-00020" summary="CHanged GET/metrics functionality, so it would address all endpoints. This code also shows custom created metric variable in Prometheus web interface">
+      <created>1690446260944</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1690446260944</updated>
+    </task>
+    <task id="LOCAL-00021" summary="CHanged GET/metrics functionality, so it would address all endpoints. This code also shows custom created metric variable in Prometheus web interface">
+      <created>1690446672715</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1690446672715</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Final version of the code with all the necessary comments, error logs and representing GET, POST, PUT and functionality for GET/metrics.">
+      <created>1690451955469</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1690451955469</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Small bug fixes">
+      <created>1690475058643</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1690475058643</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Small bug fixes">
+      <created>1690476056572</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1690476056572</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fixed gitigonore">
+      <created>1690479693778</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1690479693778</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fixed gitigonore">
+      <created>1690479789417</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1690479789417</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Small changes">
+      <created>1690484677810</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1690484677810</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Checking if key is working">
+      <created>1690485740723</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1690485740723</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Checking if key is working">
+      <created>1690486953459</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1690486953459</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Checking if key is working">
+      <created>1690487000291</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1690487000291</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added error handlers to code and error messages" />
+    <MESSAGE value="Added API/TOKEN/URL" />
+    <MESSAGE value="Added error messages and success message" />
+    <MESSAGE value="Added final error handling messages, cleaned up first part of the application, added comments to each part to explain what they mean" />
+    <MESSAGE value="Added initial addDeal function together with API, Token, URL and title of the deal" />
+    <MESSAGE value="Changed to add payloadData variable with map/strings/interface functionality as strings.NewReader was not working" />
+    <MESSAGE value="Made the code more readable, added error handling and comments to each section" />
+    <MESSAGE value="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/Ttesting_environment' into testing_environment" />
+    <MESSAGE value="Added my own endpoint to GET and tested it within pipelines_test file by trying to find a title which exists in Postman and Pipedrive CRM&#10;&#10;With that said, I also created pipelines_test file, to test code functionality and behavior, added simple testing for GET function" />
+    <MESSAGE value="Made changes to the test and main file in order to hide the now changed API" />
+    <MESSAGE value="Added a POST function and also DealHandler which will be referred to in main function. Added POST testing functionality also to pipelines_test file to see whether new deal is accepted by the server" />
+    <MESSAGE value="Added PUT function with dealhandler, added mandatory functions to both AddDeal and GetRequest" />
+    <MESSAGE value="Added GET/metrics to gather information about requests and latency for GET/deals" />
+    <MESSAGE value="CHanged GET/metrics functionality, so it would address all endpoints. This code also shows custom created metric variable in Prometheus web interface" />
+    <MESSAGE value="Final version of the code with all the necessary comments, error logs and representing GET, POST, PUT and functionality for GET/metrics." />
+    <MESSAGE value="Small bug fixes" />
+    <MESSAGE value="Fixed gitigonore" />
+    <MESSAGE value="Small changes" />
+    <MESSAGE value="Checking if key is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Checking if key is working" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
