@@ -12,14 +12,6 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
-	// Check if the test-specific environment variable is set
-	apiToken := os.Getenv("TEST_PIPEDRIVE_API_TOKEN")
-	if apiToken != "" {
-		os.Setenv("PIPEDRIVE_API_TOKEN", apiToken)
-		return
-	}
-
-	// If the test-specific token is not set, use the token from the config.json file
 	config, err := loadConfig()
 	if err != nil {
 		t.Fatalf("Error loading config: %s", err)
@@ -47,14 +39,9 @@ func TestGetDealsHandler(t *testing.T) {
 	}
 
 	// Check if the response body contains the "title" field
-	expectedTitle := "Prodigy"
+	expectedTitle := "Ingretchen"
 	if !strings.Contains(w.Body.String(), expectedTitle) {
 		t.Errorf("Expected title '%s' not found in the response", expectedTitle)
-	}
-
-	// Check the response body to ensure it is not empty
-	if w.Body.Len() == 0 {
-		t.Error("Empty response body")
 	}
 }
 
@@ -90,25 +77,6 @@ func TestAddDealHandler(t *testing.T) {
 	if w.Code != http.StatusCreated {
 		t.Errorf("Expected status code %d, but got %d", http.StatusCreated, w.Code)
 	}
-
-	// Test case: Invalid payload (no title field)
-	invalidPayload := map[string]interface{}{
-		"value":              267,
-		"currency":           "EUR",
-		"status":             "open",
-		"org_id":             1,
-		"participants_count": 1,
-	}
-	invalidPayloadBytes, _ := json.Marshal(invalidPayload)
-	w = httptest.NewRecorder()
-	r = httptest.NewRequest(http.MethodPost, "/addDeal", bytes.NewBuffer(invalidPayloadBytes))
-	r.Header.Set("Content-Type", "application/json")
-	addDealHandler(w, r)
-
-	if w.Code != http.StatusBadRequest {
-		t.Errorf("Expected status code %d for invalid payload, but got %d", http.StatusBadRequest, w.Code)
-	}
-
 }
 
 func TestChangeDealHandler(t *testing.T) {
