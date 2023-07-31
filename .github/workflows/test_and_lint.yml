@@ -25,16 +25,10 @@ jobs:
       # Install any dependencies needed for testing
       - name: Install Dependencies
         run: go mod download 
-      # Add this step before the 'Run Tests' step in the workflow
-      - name: Copy config.json
-        run: echo "${{ secrets.PIPEDRIVE_API_TOKEN }}" > config.json
-
 
       # Run tests
       - name: Run Tests
         run: go test ./...
-
-      # Remove the existing linting step using golint
 
       # Run the Super Linter
       - name: Lint Code Base
