@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Added a few more test cases">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/test_and_lint.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/test_and_lint.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DealFlows.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DealFlows.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipelines.go" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Pipelines.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipelines_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pipelines_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
@@ -77,9 +91,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows\.github\workflows" />
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows\.idea" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows\data" />
-      <recent name="C:\Users\annam\IdeaProjects\DealFlows\.github\workflows" />
     </key>
   </component>
   <component name="RunManager">
@@ -110,7 +125,7 @@
       <updated>1689335750894</updated>
       <workItem from="1689335751961" duration="6502000" />
       <workItem from="1689349013336" duration="13099000" />
-      <workItem from="1689579335339" duration="93863000" />
+      <workItem from="1689579335339" duration="95709000" />
     </task>
     <task id="LOCAL-00001" summary="Added error handlers to code and error messages">
       <created>1689337268994</created>
