@@ -26,8 +26,10 @@ jobs:
       - name: Install Dependencies
         run: go mod download
 
-      # Run tests
+      # Run tests with the environment variable set from the secret
       - name: Run Tests
+        env:
+          PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
         run: go test ./...
 
       # Remove the existing linting step using golint
@@ -38,4 +40,4 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
