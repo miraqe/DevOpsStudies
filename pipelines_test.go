@@ -12,13 +12,19 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
-	config, err := loadConfig()
-	if err != nil {
-		t.Fatalf("Error loading config: %s", err)
+	// Check if the tests are running in the GitHub Actions environment
+	ghToken := os.Getenv("PIPEDRIVE_API_TOKEN_GITHUB")
+	if ghToken != "" {
+		// Use the GitHub secret as the API token
+		os.Setenv("PIPEDRIVE_API_TOKEN", ghToken)
+	} else {
+		// Fallback to loading the API token from the config.json file for local testing
+		config, err := loadConfig()
+		if err != nil {
+			t.Fatalf("Error loading config: %s", err)
+		}
+		os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
 	}
-
-	// Set the API token as an environment variable
-	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
 }
 
 func TestGetDealsHandler(t *testing.T) {
