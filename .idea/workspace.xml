@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/test_and_lint.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/test_and_lint.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-    </list>
+    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +108,7 @@
       <updated>1689335750894</updated>
       <workItem from="1689335751961" duration="6502000" />
       <workItem from="1689349013336" duration="13099000" />
-      <workItem from="1689579335339" duration="90930000" />
+      <workItem from="1689579335339" duration="91562000" />
     </task>
     <task id="LOCAL-00001" summary="Added error handlers to code and error messages">
       <created>1689337268994</created>
@@ -351,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690801618747</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Changes">
+      <created>1690802197412</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1690802197412</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
