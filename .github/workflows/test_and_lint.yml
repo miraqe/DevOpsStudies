@@ -26,13 +26,11 @@ jobs:
       - name: Install Dependencies
         run: go mod download
 
-      # Set the GitHub secret as an environment variable for the tests
-      - name: Set Test Environment Variable
-        run: echo "PIPEDRIVE_API_TOKEN=${{ secrets.PIPEDRIVE_API_TOKEN }}" >> $GITHUB_ENV
-
       # Run tests
       - name: Run Tests
         run: go test ./...
+
+      # Remove the existing linting step using golint
 
       # Run the Super Linter
       - name: Lint Code Base
