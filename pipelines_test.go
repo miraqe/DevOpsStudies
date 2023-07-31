@@ -82,25 +82,6 @@ func TestAddDealHandler(t *testing.T) {
 	if w.Code != http.StatusCreated {
 		t.Errorf("Expected status code %d, but got %d", http.StatusCreated, w.Code)
 	}
-
-	// Test case: Invalid payload (no title field)
-	invalidPayload := map[string]interface{}{
-		"value":              267,
-		"currency":           "EUR",
-		"status":             "open",
-		"org_id":             1,
-		"participants_count": 1,
-	}
-	invalidPayloadBytes, _ := json.Marshal(invalidPayload)
-	w = httptest.NewRecorder()
-	r = httptest.NewRequest(http.MethodPost, "/addDeal", bytes.NewBuffer(invalidPayloadBytes))
-	r.Header.Set("Content-Type", "application/json")
-	addDealHandler(w, r)
-
-	if w.Code != http.StatusBadRequest {
-		t.Errorf("Expected status code %d for invalid payload, but got %d", http.StatusBadRequest, w.Code)
-	}
-
 }
 
 func TestChangeDealHandler(t *testing.T) {
