@@ -26,6 +26,9 @@ jobs:
       # Install any dependencies needed for testing
       - name: Install Dependencies
         run: go mod download 
+      # Add this step before the 'Run Tests' step in the workflow
+      - name: Copy config.json
+        run: cp config.json $GITHUB_WORKSPACE
 
       # Run tests
       - name: Run Tests
