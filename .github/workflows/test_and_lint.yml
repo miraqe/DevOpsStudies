@@ -28,7 +28,8 @@ jobs:
         run: go mod download 
       # Add this step before the 'Run Tests' step in the workflow
       - name: Copy config.json
-        run: cp config.json $GITHUB_WORKSPACE
+        run: echo "${{ secrets.PIPEDRIVE_API_TOKEN }}" > config.json
+
 
       # Run tests
       - name: Run Tests
