@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -60,11 +59,7 @@ func loadConfig() (Config, error) {
 
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config)
-	if err != nil {
-		return config, fmt.Errorf("error decoding JSON: %w", err)
-	}
-
-	return config, nil
+	return config, err
 }
 
 // getDealsHandler handles the HTTP request for getting deals from the Pipedrive API.

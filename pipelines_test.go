@@ -12,17 +12,9 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
-	// Check if the test-specific environment variable is set
-	apiToken := os.Getenv("TEST_PIPEDRIVE_API_TOKEN")
-	if apiToken != "" {
-		os.Setenv("PIPEDRIVE_API_TOKEN", apiToken)
-		return
-	}
-
-	// If the test-specific token is not set, use the token from the config.json file
 	config, err := loadConfig()
 	if err != nil {
-		t.Fatalf("Error loading JSON configuration file: %s", err)
+		t.Fatalf("Error loading config: %s", err)
 	}
 
 	// Set the API token as an environment variable
@@ -47,7 +39,7 @@ func TestGetDealsHandler(t *testing.T) {
 	}
 
 	// Check if the response body contains the "title" field
-	expectedTitle := "Ingretchen"
+	expectedTitle := "Prodigy"
 	if !strings.Contains(w.Body.String(), expectedTitle) {
 		t.Errorf("Expected title '%s' not found in the response", expectedTitle)
 	}
