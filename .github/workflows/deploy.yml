@@ -1,6 +1,9 @@
 name: Deploy On Merge
 
 on:
+  push:
+    branches:
+      - testing_environment
   pull_request:
     types:
       - closed
