@@ -12,6 +12,14 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
+	// Check if the test-specific environment variable is set
+	apiToken := os.Getenv("TEST_PIPEDRIVE_API_TOKEN")
+	if apiToken != "" {
+		os.Setenv("PIPEDRIVE_API_TOKEN", apiToken)
+		return
+	}
+
+	// If the test-specific token is not set, use the token from the config.json file
 	config, err := loadConfig()
 	if err != nil {
 		t.Fatalf("Error loading config: %s", err)
