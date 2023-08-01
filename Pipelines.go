@@ -43,8 +43,9 @@ var (
 )
 
 // Add a function Config, which represents configuration from a JSON file.
+
 type Config struct {
-	PipedriveAPIToken string `json:"pipedrive_api_token"`
+	PipedriveAPIToken string `json:"PipedriveAPIToken"`
 }
 
 // Add a function loadConfig, which loads the configuration key from the "config.json" file.

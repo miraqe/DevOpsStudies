@@ -39,7 +39,7 @@ func TestGetDealsHandler(t *testing.T) {
 	}
 
 	// Check if the response body contains the "title" field
-	expectedTitle := "Ingretchen"
+	expectedTitle := "Prodigy"
 	if !strings.Contains(w.Body.String(), expectedTitle) {
 		t.Errorf("Expected title '%s' not found in the response", expectedTitle)
 	}
@@ -50,8 +50,8 @@ func TestAddDealHandler(t *testing.T) {
 
 	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-		"title":              "Craddle Merch",
-		"value":              576,
+		"title":              "CraddleMerch",
+		"value":              267,
 		"currency":           "EUR",
 		"status":             "open",
 		"org_id":             1,
@@ -77,6 +77,23 @@ func TestAddDealHandler(t *testing.T) {
 	if w.Code != http.StatusCreated {
 		t.Errorf("Expected status code %d, but got %d", http.StatusCreated, w.Code)
 	}
+
+	invalidPayload := map[string]interface{}{
+		"value":              267,
+		"currency":           "EUR",
+		"status":             "open",
+		"org_id":             1,
+		"participants_count": 1,
+	}
+	invalidPayloadBytes, _ := json.Marshal(invalidPayload)
+	w = httptest.NewRecorder()
+	r = httptest.NewRequest(http.MethodPost, "/addDeal", bytes.NewBuffer(invalidPayloadBytes))
+	r.Header.Set("Content-Type", "application/json")
+	addDealHandler(w, r)
+
+	if w.Code != http.StatusBadRequest {
+		t.Errorf("Expected status code %d for invalid payload, but got %d", http.StatusBadRequest, w.Code)
+	}
 }
 
 func TestChangeDealHandler(t *testing.T) {
@@ -84,8 +101,8 @@ func TestChangeDealHandler(t *testing.T) {
 
 	// Prepare the payload data for changing deal 44
 	payloadData := map[string]interface{}{
-		"title": "Spruce Bravo",
-		"value": 2634,
+		"title": "FinniganTech",
+		"value": 6500,
 	}
 
 	// Convert the payload data to JSON format
@@ -107,4 +124,5 @@ func TestChangeDealHandler(t *testing.T) {
 	if w.Code != http.StatusOK {
 		t.Errorf("Expected status code %d, but got %d", http.StatusOK, w.Code)
 	}
+
 }
