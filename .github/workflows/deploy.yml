@@ -1,0 +1,20 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add any deployment steps here
+      # For example, you can use Docker, Kubernetes, etc.
+
+      - name: Deployment Complete
+        run: echo "Deployed!"
