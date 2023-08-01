@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Key change">
+    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Key rotation">
       <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,14 +237,7 @@
       <workItem from="1689579335339" duration="95709000" />
       <workItem from="1690815149448" duration="1773000" />
       <workItem from="1690817041508" duration="4988000" />
-      <workItem from="1690875260042" duration="8363000" />
-    </task>
-    <task id="LOCAL-00013" summary="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing">
-      <created>1689414977799</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1689414977799</updated>
+      <workItem from="1690875260042" duration="8682000" />
     </task>
     <task id="LOCAL-00014" summary="Merge remote-tracking branch 'origin/Ttesting_environment' into testing_environment">
       <created>1689415040619</created>
@@ -582,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690884314684</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Key rotation">
+      <created>1690884842646</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1690884842646</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added initial addDeal function together with API, Token, URL and title of the deal" />
     <MESSAGE value="Changed to add payloadData variable with map/strings/interface functionality as strings.NewReader was not working" />
     <MESSAGE value="Made the code more readable, added error handling and comments to each section" />
     <MESSAGE value="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing" />
@@ -656,7 +655,8 @@
     <MESSAGE value="Change" />
     <MESSAGE value="API fixes" />
     <MESSAGE value="Key change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Key change" />
+    <MESSAGE value="Key rotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Key rotation" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
