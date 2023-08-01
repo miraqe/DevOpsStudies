@@ -12,6 +12,9 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
+	// Unset the PIPEDRIVE_API_TOKEN environment variable to force reading from config.json
+	os.Unsetenv("PIPEDRIVE_API_TOKEN")
+
 	config, err := loadConfig()
 	if err != nil {
 		t.Fatalf("Error loading config: %s", err)
