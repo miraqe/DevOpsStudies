@@ -51,6 +51,15 @@ type Config struct {
 // Add a function loadConfig, which loads the configuration key from the "config.json" file.
 func loadConfig() (Config, error) {
 	var config Config
+
+	// Check if the PIPEDRIVE_API_TOKEN environment variable is set
+	apiToken := os.Getenv("PIPEDRIVE_API_TOKEN")
+	if apiToken != "" {
+		config.PipedriveAPIToken = apiToken
+		return config, nil
+	}
+
+	// Read from "config.json" if the environment variable is not set
 	file, err := os.Open("config.json")
 	if err != nil {
 		return config, err
