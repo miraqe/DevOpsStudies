@@ -12,17 +12,13 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
-	// Check if the PIPEDRIVE_API_TOKEN environment variable is already set
-	if os.Getenv("PIPEDRIVE_API_TOKEN") == "" {
-		// If not set, try to load the configuration from "config.json"
-		config, err := loadConfig()
-		if err != nil {
-			t.Fatalf("Error loading config: %s", err)
-		}
-
-		// Set the API token as an environment variable
-		os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
+	config, err := loadConfig()
+	if err != nil {
+		t.Fatalf("Error loading config: %s", err)
 	}
+
+	// Set the API token as an environment variable
+	os.Setenv("PIPEDRIVE_API_TOKEN", config.PipedriveAPIToken)
 }
 
 func TestGetDealsHandler(t *testing.T) {

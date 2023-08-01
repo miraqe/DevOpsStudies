@@ -43,11 +43,12 @@ var (
 )
 
 // Add a function Config, which represents configuration from a JSON file.
+
 type Config struct {
 	PipedriveAPIToken string `json:"PipedriveAPIToken"`
 }
 
-// Add a function loadConfig, which loads the configuration key either from the environment variable or from the "config.json" file.
+// Add a function loadConfig, which loads the configuration key from the "config.json" file.
 func loadConfig() (Config, error) {
 	var config Config
 
