@@ -43,7 +43,6 @@ var (
 )
 
 // Add a function Config, which represents configuration from a JSON file.
-
 type Config struct {
 	PipedriveAPIToken string `json:"PipedriveAPIToken"`
 }
