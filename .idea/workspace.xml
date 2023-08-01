@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Change">
+    <list default="true" id="abf7de27-1637-47d8-a97d-1618c20a2777" name="Changes" comment="Key change">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +18,7 @@
       <list>
         <option value="tsconfig.json" />
         <option value="Go File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -85,14 +87,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\annam\IdeaProjects\DealFlows" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows\.idea" />
+      <recent name="C:\Users\annam\IdeaProjects\DealFlows" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows\" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows\.github\workflows" />
       <recent name="C:\Users\annam\IdeaProjects\DealFlows\data" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test. DealFlows">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -235,90 +237,7 @@
       <workItem from="1689579335339" duration="95709000" />
       <workItem from="1690815149448" duration="1773000" />
       <workItem from="1690817041508" duration="4988000" />
-    </task>
-    <task id="LOCAL-00001" summary="Added error handlers to code and error messages">
-      <created>1689337268994</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1689337268994</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added error handlers to code and error messages">
-      <created>1689337589290</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1689337589290</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added error handlers to code and error messages">
-      <created>1689337729415</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1689337729415</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added API/TOKEN/URL">
-      <created>1689338585675</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1689338585675</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added API/TOKEN/URL">
-      <created>1689339077884</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1689339077884</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added API/TOKEN/URL">
-      <created>1689339474594</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1689339474594</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added error messages and success message">
-      <created>1689339564029</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1689339564029</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added final error handling messages, cleaned up first part of the application, added comments to each part to explain what they mean">
-      <created>1689343703571</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1689343703571</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added initial addDeal function together with API, Token, URL and title of the deal">
-      <created>1689349506022</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1689349506022</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Changed to add payloadData variable with map/strings/interface functionality as strings.NewReader was not working">
-      <created>1689351952508</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1689351952508</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Made the code more readable, added error handling and comments to each section">
-      <created>1689352632178</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1689352632178</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing">
-      <created>1689414760883</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1689414760883</updated>
+      <workItem from="1690875260042" duration="8363000" />
     </task>
     <task id="LOCAL-00013" summary="Added updateDeal function while using the most of the previous code, determined URL value to find the exact deal that needs changing">
       <created>1689414977799</created>
@@ -579,7 +498,91 @@
       <option name="project" value="LOCAL" />
       <updated>1690828274231</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Change">
+      <created>1690828930242</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1690828930242</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Change">
+      <created>1690829023875</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1690829023875</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Change">
+      <created>1690829535806</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1690829535806</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Change">
+      <created>1690830175644</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1690830175644</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Change">
+      <created>1690875493989</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1690875493989</updated>
+    </task>
+    <task id="LOCAL-00055" summary="API fixes">
+      <created>1690876743064</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1690876743064</updated>
+    </task>
+    <task id="LOCAL-00056" summary="API fixes">
+      <created>1690877328359</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1690877328359</updated>
+    </task>
+    <task id="LOCAL-00057" summary="API fixes">
+      <created>1690877504348</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1690877504348</updated>
+    </task>
+    <task id="LOCAL-00058" summary="API fixes">
+      <created>1690880012174</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1690880012174</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Key change">
+      <created>1690883874438</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1690883874438</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Key change">
+      <created>1690884066629</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1690884066629</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Key change">
+      <created>1690884314684</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1690884314684</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,8 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added error messages and success message" />
-    <MESSAGE value="Added final error handling messages, cleaned up first part of the application, added comments to each part to explain what they mean" />
     <MESSAGE value="Added initial addDeal function together with API, Token, URL and title of the deal" />
     <MESSAGE value="Changed to add payloadData variable with map/strings/interface functionality as strings.NewReader was not working" />
     <MESSAGE value="Made the code more readable, added error handling and comments to each section" />
@@ -653,7 +654,9 @@
     <MESSAGE value="Small changes" />
     <MESSAGE value="Merge remote-tracking branch 'origin/testing_environment' into testing_environment&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change" />
+    <MESSAGE value="API fixes" />
+    <MESSAGE value="Key change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Key change" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
