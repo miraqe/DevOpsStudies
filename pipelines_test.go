@@ -50,8 +50,8 @@ func TestAddDealHandler(t *testing.T) {
 
 	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-		"title":              "CraddleMerch",
-		"value":              267,
+		"title":              "Craddle Merch",
+		"value":              576,
 		"currency":           "EUR",
 		"status":             "open",
 		"org_id":             1,
@@ -84,8 +84,8 @@ func TestChangeDealHandler(t *testing.T) {
 
 	// Prepare the payload data for changing deal 44
 	payloadData := map[string]interface{}{
-		"title": "FinniganTech",
-		"value": 6500,
+		"title": "Spruce Bravo",
+		"value": 2634,
 	}
 
 	// Convert the payload data to JSON format
