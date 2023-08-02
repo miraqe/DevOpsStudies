@@ -61,12 +61,11 @@ func TestAddDealHandler(t *testing.T) {
 
 	// Prepare the payload data for the new deal
 	payloadData := map[string]interface{}{
-		"title":              "CraddleMerch",
-		"value":              267,
-		"currency":           "EUR",
-		"status":             "open",
-		"org_id":             1,
-		"participants_count": 1,
+		"title":    "Persephone",
+		"value":    400,
+		"currency": "EUR",
+		"status":   "open",
+		"org_id":   1,
 	}
 
 	// Convert the payload data to JSON format
@@ -96,6 +95,7 @@ func TestAddDealHandler(t *testing.T) {
 		"org_id":             1,
 		"participants_count": 1,
 	}
+
 	invalidPayloadBytes, _ := json.Marshal(invalidPayload)
 	w = httptest.NewRecorder()
 	r = httptest.NewRequest(http.MethodPost, "/addDeal", bytes.NewBuffer(invalidPayloadBytes))
