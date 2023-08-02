@@ -59,7 +59,7 @@ func loadConfig() (Config, error) {
 	}
 
 	// Read from "config.json" if the environment variable is not set
-	file, err := os.Open("C:\\Users\\annam\\IdeaProjects\\DealFlows\\config.json")
+	file, err := os.Open("config.json")
 	if err != nil {
 		return config, err
 	}
