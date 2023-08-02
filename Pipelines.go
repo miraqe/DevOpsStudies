@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -43,6 +44,7 @@ var (
 )
 
 // Add a function Config, which represents configuration from a JSON file.
+var config Config
 
 type Config struct {
 	PipedriveAPIToken string `json:"PipedriveAPIToken"`
@@ -52,29 +54,31 @@ type Config struct {
 func loadConfig() (Config, error) {
 	var config Config
 
-	// Check if the PIPEDRIVE_API_TOKEN environment variable is set
-	apiToken := os.Getenv("PIPEDRIVE_API_TOKEN")
-	if apiToken != "" {
-		config.PipedriveAPIToken = apiToken
-		return config, nil
-	}
-
-	// Read from "config.json" if the environment variable is not set
-	file, err := os.Open("config.json")
+	file, err := os.Open("C:\\Users\\annam\\IdeaProjects\\DealFlows\\config.json")
 	if err != nil {
-		return config, err
+		return config, fmt.Errorf("failed to open config file: %w", err)
 	}
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config)
-	return config, err
+	if err != nil {
+		return config, fmt.Errorf("failed to decode config file: %w", err)
+	}
+	return config, nil
 }
 
 // getDealsHandler handles the HTTP request for getting deals from the Pipedrive API.
 func getDealsHandler(w http.ResponseWriter, r *http.Request) {
-	var apiToken = os.Getenv("PIPEDRIVE_API_TOKEN")
-	pipedriveURL := "https://api.pipedrive.com/v1/deals?api_token=" + apiToken
+	// Load the configuration from config.json
+	config, err := loadConfig()
+	if err != nil {
+		log.Println("Error loading config:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	pipedriveURL := "https://api.pipedrive.com/v1/deals?api_token=" + config.PipedriveAPIToken
 
 	// Create a new GET request to the Pipedrive API
 	req, err := http.NewRequest(http.MethodGet, pipedriveURL, nil)
@@ -103,7 +107,6 @@ func getDealsHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-	println("Connection Successful! Showing all deals: ", string(body))
 
 	// Set the appropriate headers and write the response body to the client
 	w.Header().Set("Content-Type", "application/json")
@@ -113,6 +116,19 @@ func getDealsHandler(w http.ResponseWriter, r *http.Request) {
 
 // addDealHandler handles the HTTP request for adding a new deal to the Pipedrive API.
 func addDealHandler(w http.ResponseWriter, r *http.Request) {
+	// Check if the request method is POST
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Check if the Content-Type header is set to "application/json"
+	contentType := r.Header.Get("Content-Type")
+	if contentType != "application/json" {
+		http.Error(w, "Invalid Content-Type. Expected application/json", http.StatusUnsupportedMediaType)
+		return
+	}
+
 	var payloadData map[string]interface{}
 
 	// Read the request body to get the payload data
@@ -137,8 +153,14 @@ func addDealHandler(w http.ResponseWriter, r *http.Request) {
 
 // addDeal adds a new deal to the Pipedrive API using the provided payload data.
 func addDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]interface{}) {
-	var apiToken = os.Getenv("PIPEDRIVE_API_TOKEN")
-	pipedriveURL := "https://api.pipedrive.com/v1/deals?api_token=" + apiToken
+	// Load the configuration from config.json
+	config, err := loadConfig()
+	if err != nil {
+		log.Println("Error loading config:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	pipedriveURL := "https://api.pipedrive.com/v1/deals?api_token=" + config.PipedriveAPIToken
 
 	// Convert the payload data to JSON format
 	payloadBytes, err := json.Marshal(payloadData)
@@ -155,6 +177,7 @@ func addDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]inte
 		http.Error(w, "Internal Server Error ", http.StatusInternalServerError)
 		return
 	}
+
 	// Set the content type to JSON
 	req.Header.Set("Content-Type", "application/json")
 
@@ -206,8 +229,14 @@ func changeDealHandler(w http.ResponseWriter, r *http.Request) {
 
 // changeDeal changes an existing deal in the Pipedrive API using the provided payload data.
 func changeDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]interface{}) {
-	var apiToken = os.Getenv("PIPEDRIVE_API_TOKEN")
-	pipedriveURL := "https://api.pipedrive.com/v1/deals/44?api_token=" + apiToken
+	// Load the configuration from config.json
+	config, err := loadConfig()
+	if err != nil {
+		log.Println("Error loading config:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	pipedriveURL := "https://api.pipedrive.com/v1/deals/130?api_token=" + config.PipedriveAPIToken
 
 	payloadBytes, err := json.Marshal(payloadData)
 	if err != nil {
@@ -248,6 +277,7 @@ func changeDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]i
 }
 
 func main() {
+
 	collectMetrics()
 
 	http.HandleFunc("/getDeals", getDealsHandler)
