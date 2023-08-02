@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -44,8 +43,6 @@ var (
 )
 
 // Add a function Config, which represents configuration from a JSON file.
-var config Config
-
 type Config struct {
 	PipedriveAPIToken string `json:"PipedriveAPIToken"`
 }
@@ -54,18 +51,23 @@ type Config struct {
 func loadConfig() (Config, error) {
 	var config Config
 
-	file, err := os.Open("C:\\Users\\annam\\IdeaProjects\\DealFlows\\config.json")
+	// Check if the PIPEDRIVE_API_TOKEN environment variable is set
+	apiToken := os.Getenv("PIPEDRIVE_API_TOKEN")
+	if apiToken != "" {
+		config.PipedriveAPIToken = apiToken
+		return config, nil
+	}
+
+	// Read from "config.json" if the environment variable is not set
+	file, err := os.Open("config.json")
 	if err != nil {
-		return config, fmt.Errorf("failed to open config file: %w", err)
+		return config, err
 	}
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config)
-	if err != nil {
-		return config, fmt.Errorf("failed to decode config file: %w", err)
-	}
-	return config, nil
+	return config, err
 }
 
 // getDealsHandler handles the HTTP request for getting deals from the Pipedrive API.
