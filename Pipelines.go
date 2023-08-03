@@ -54,6 +54,7 @@ func loadConfig() (Config, error) {
 	// Check if the PIPEDRIVE_API_TOKEN environment variable is set
 	apiToken := os.Getenv("PIPEDRIVE_API_TOKEN")
 	if apiToken != "" {
+		log.Println("Using API Token from environment variable:", apiToken)
 		config.PipedriveAPIToken = apiToken
 		return config, nil
 	}
@@ -61,17 +62,23 @@ func loadConfig() (Config, error) {
 	// Read from "config.json" if the environment variable is not set
 	file, err := os.Open("config.json")
 	if err != nil {
+		log.Println("Error opening config.json:", err)
 		return config, err
 	}
 	defer file.Close()
 
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config)
+	if err != nil {
+		log.Println("Error decoding config.json:", err)
+	}
+	log.Println("Using API Token from config.json:", config.PipedriveAPIToken)
 	return config, err
 }
 
 // getDealsHandler handles the HTTP request for getting deals from the Pipedrive API.
 func getDealsHandler(w http.ResponseWriter, r *http.Request) {
+
 	// Load the configuration from config.json
 	config, err := loadConfig()
 	if err != nil {
@@ -118,6 +125,7 @@ func getDealsHandler(w http.ResponseWriter, r *http.Request) {
 
 // addDealHandler handles the HTTP request for adding a new deal to the Pipedrive API.
 func addDealHandler(w http.ResponseWriter, r *http.Request) {
+
 	// Check if the request method is POST
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
@@ -211,6 +219,7 @@ func addDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]inte
 
 // changeDealHandler handles the HTTP request for changing an existing deal in the Pipedrive API.
 func changeDealHandler(w http.ResponseWriter, r *http.Request) {
+
 	var payloadData map[string]interface{}
 
 	// Read the request body to get the payload data
@@ -238,6 +247,7 @@ func changeDeal(w http.ResponseWriter, r *http.Request, payloadData map[string]i
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
+
 	pipedriveURL := "https://api.pipedrive.com/v1/deals/130?api_token=" + config.PipedriveAPIToken
 
 	payloadBytes, err := json.Marshal(payloadData)

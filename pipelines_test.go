@@ -12,9 +12,9 @@ import (
 )
 
 func setAPIToken(t *testing.T) {
-	// Check if running in Github Actions (environment variable is set)
+	// Check if running in GitHub Actions (environment variable is set)
 	if os.Getenv("GITHUB_ACTIONS") == "true" {
-		// Set the API token as an environment variable from Github Secrets
+		// Set the API token as an environment variable from GitHub Secrets
 		apiToken := os.Getenv("PIPEDRIVE_API_TOKEN")
 		os.Setenv("PIPEDRIVE_API_TOKEN", apiToken)
 	} else {
